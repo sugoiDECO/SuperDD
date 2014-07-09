@@ -1,0 +1,88 @@
+{
+    "total_count": 1,
+    "offset": 0,
+    "issues": [
+               {
+               "subject": "状況報告要請",
+               "updated_on": "2014-07-09T05:37:18Z",
+               "start_date": "2014-07-07",
+               "done_ratio": 0,
+               "tracker": {
+               "name": "発見",
+               "id": 4
+               },
+               "geometry": "{\"type\":\"Point\",\"coordinates\":[139.70540672364956,35.66915305367751]}",
+               "priority": {
+               "name": "通常",
+               "id": 2
+               },
+               "assigned_to": {
+               "name": "すごい避難訓練 16",
+               "id": 107
+               },
+               "status": {
+               "name": "未着手",
+               "id": 1
+               },
+               "author": {
+               "name": "Nohara Shiro",
+               "id": 5
+               },
+               "description": "",
+               "created_on": "2014-07-07T05:38:53Z",
+               "id": 19878,
+               "custom_fields": [
+                                 {
+                                 "name": "カテゴリID",
+                                 "value": "",
+                                 "id": 4
+                                 },
+                                 {
+                                 "name": "住所",
+                                 "value": "",
+                                 "id": 5
+                                 },
+                                 {
+                                 "name": "order",
+                                 "value": "1",
+                                 "id": 8
+                                 },
+                                 {
+                                 "name": "radius",
+                                 "value": "100",
+                                 "id": 9
+                                 },
+                                 {
+                                 "name": "identifier",
+                                 "value": "A-1",
+                                 "id": 10
+                                 },
+                                 {
+                                 "name": "published",
+                                 "value": "1",
+                                 "id": 11
+                                 },
+                                 {
+                                 "name": "アクション",
+                                 "value": "報告",
+                                 "id": 12
+                                 },
+                                 {
+                                 "name": "手段",
+                                 "value": "カメラ, Twitter",
+                                 "id": 13
+                                 },
+                                 {
+                                 "name": "discussion",
+                                 "value": "災害対策本部より、ラフォーレ原宿の状況報告の要請がありました。手持ちのタブレットの機能を利用して、安売り状況を報告してください。",
+                                 "id": 14
+                                 }
+                                 ],
+               "project": {
+               "name": "すごい避難訓練のタスク",
+               "id": 56
+               }
+               }
+               ],
+    "limit": 25
+}

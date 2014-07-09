@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>identifier</key>
+		<string>A-1</string>
+		<key>subject</key>
+		<string></string>
+		<key>discussion</key>
+		<string>災害情報 浦安市直下を震源とする地震【震度７】が発生しました。 身の安全を確保してください。</string>
+		<key>action</key>
+		<string>身の安全の確保</string>
+		<key>way</key>
+		<string>指定なし</string>
+	</dict>
+	<dict>
+		<key>identifier</key>
+		<string>A-2</string>
+		<key>subject</key>
+		<string>状況報告要請</string>
+		<key>discussion</key>
+		<string>災害対策本部より、浦安マリーナの状況報告の要請がありました。手持ちのタブレットの機能を利用して、被害状況を報告してください。</string>
+		<key>action</key>
+		<string>報告</string>
+		<key>way</key>
+		<string>カメラ, Twitter</string>
+	</dict>
+	<dict>
+		<key>New item</key>
+		<string></string>
+		<key>identifier</key>
+		<string>A-3</string>
+		<key>subject</key>
+		<string>状況報告要請</string>
+		<key>discussion</key>
+		<string>災害対策本部より、浦安マリーナの状況報告の要請がありました。手持ちのタブレットの機能を利用して、被害状況を報告してください。</string>
+		<key>action</key>
+		<string>報告</string>
+		<key>way</key>
+		<string>カメラ, Twitter</string>
+		<key>latitude</key>
+		<real>35.662</real>
+		<key>longitude</key>
+		<real>139.87698</real>
+		<key>radius</key>
+		<integer>100</integer>
+	</dict>
+</array>
+</plist>
