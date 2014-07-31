@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		5D3C80A919686E27003B9E65 /* tasksForTest.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D3C80A819686E27003B9E65 /* tasksForTest.plist */; };
+		5D473C071987AE870043680A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C061987AE870043680A /* AudioToolbox.framework */; };
+		5D473C091987AE900043680A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C081987AE900043680A /* CFNetwork.framework */; };
+		5D473C0B1987AEAD0043680A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C0A1987AEAD0043680A /* CoreLocation.framework */; };
+		5D473C0D1987AF000043680A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C0C1987AF000043680A /* libz.dylib */; };
+		5D473C0E1987AF0D0043680A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC6E086196D5AE200CDAF12 /* MobileCoreServices.framework */; };
+		5D473C101987AF1A0043680A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C0F1987AF1A0043680A /* QuartzCore.framework */; };
+		5D473C121987AF250043680A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C111987AF250043680A /* Security.framework */; };
+		5D473C151987AF3E0043680A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC6E088196D5AF100CDAF12 /* SystemConfiguration.framework */; };
+		5D8404A2196E70AF00ABC26C /* SDDLocationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */; };
 		5DBD2B12196DC5D600A99272 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9482A1966790D009DF379 /* XCTest.framework */; };
 		5DBD2B13196DC5D600A99272 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC948081966790D009DF379 /* Foundation.framework */; };
 		5DBD2B14196DC5D600A99272 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9480C1966790D009DF379 /* UIKit.framework */; };
 		5DBD2B1A196DC5D600A99272 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DBD2B18196DC5D600A99272 /* InfoPlist.strings */; };
 		5DBD2B1C196DC5D600A99272 /* SuperDDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBD2B1B196DC5D600A99272 /* SuperDDTests.m */; };
 		5DBD2B26196DD22800A99272 /* published_tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DBD2B25196DD22800A99272 /* published_tasks.json */; };
+		5DBD2B29196E328300A99272 /* UIAlertView+SDD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBD2B28196E328300A99272 /* UIAlertView+SDD.m */; };
 		5DC948091966790D009DF379 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC948081966790D009DF379 /* Foundation.framework */; };
 		5DC9480B1966790D009DF379 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9480A1966790D009DF379 /* CoreGraphics.framework */; };
 		5DC9480D1966790D009DF379 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9480C1966790D009DF379 /* UIKit.framework */; };
@@ -44,12 +54,22 @@
 
 /* Begin PBXFileReference section */
 		5D3C80A819686E27003B9E65 /* tasksForTest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tasksForTest.plist; sourceTree = "<group>"; };
+		5D473C061987AE870043680A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5D473C081987AE900043680A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5D473C0A1987AEAD0043680A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5D473C0C1987AF000043680A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5D473C0F1987AF1A0043680A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5D473C111987AF250043680A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5D8404A0196E70AF00ABC26C /* SDDLocationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDLocationReport.h; sourceTree = "<group>"; };
+		5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDLocationReport.m; sourceTree = "<group>"; };
 		5DBD2B11196DC5D500A99272 /* SuperDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DBD2B17196DC5D600A99272 /* SuperDDTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SuperDDTests-Info.plist"; sourceTree = "<group>"; };
 		5DBD2B19196DC5D600A99272 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5DBD2B1B196DC5D600A99272 /* SuperDDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperDDTests.m; sourceTree = "<group>"; };
 		5DBD2B1D196DC5D600A99272 /* SuperDDTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperDDTests-Prefix.pch"; sourceTree = "<group>"; };
 		5DBD2B25196DD22800A99272 /* published_tasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = published_tasks.json; sourceTree = "<group>"; };
+		5DBD2B27196E328200A99272 /* UIAlertView+SDD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+SDD.h"; sourceTree = "<group>"; };
+		5DBD2B28196E328300A99272 /* UIAlertView+SDD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+SDD.m"; sourceTree = "<group>"; };
 		5DC6E086196D5AE200CDAF12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5DC6E088196D5AF100CDAF12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5DC6E08A196D5B0B00CDAF12 /* libPods-SuperDDTests-Kiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SuperDDTests-Kiwi.a"; path = "Pods/build/Debug-iphoneos/libPods-SuperDDTests-Kiwi.a"; sourceTree = "<group>"; };
@@ -97,7 +117,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D473C151987AF3E0043680A /* SystemConfiguration.framework in Frameworks */,
+				5D473C121987AF250043680A /* Security.framework in Frameworks */,
+				5D473C101987AF1A0043680A /* QuartzCore.framework in Frameworks */,
+				5D473C0E1987AF0D0043680A /* MobileCoreServices.framework in Frameworks */,
+				5D473C0D1987AF000043680A /* libz.dylib in Frameworks */,
+				5D473C0B1987AEAD0043680A /* CoreLocation.framework in Frameworks */,
 				5DC9480B1966790D009DF379 /* CoreGraphics.framework in Frameworks */,
+				5D473C091987AE900043680A /* CFNetwork.framework in Frameworks */,
+				5D473C071987AE870043680A /* AudioToolbox.framework in Frameworks */,
 				5DC9480D1966790D009DF379 /* UIKit.framework in Frameworks */,
 				5DC948091966790D009DF379 /* Foundation.framework in Frameworks */,
 				AE9C1169FF484384B6443A9F /* libPods.a in Frameworks */,
@@ -151,6 +179,12 @@
 		5DC948071966790D009DF379 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D473C111987AF250043680A /* Security.framework */,
+				5D473C0F1987AF1A0043680A /* QuartzCore.framework */,
+				5D473C0C1987AF000043680A /* libz.dylib */,
+				5D473C0A1987AEAD0043680A /* CoreLocation.framework */,
+				5D473C081987AE900043680A /* CFNetwork.framework */,
+				5D473C061987AE870043680A /* AudioToolbox.framework */,
 				5DC6E08A196D5B0B00CDAF12 /* libPods-SuperDDTests-Kiwi.a */,
 				5DC6E088196D5AF100CDAF12 /* SystemConfiguration.framework */,
 				5DC6E086196D5AE200CDAF12 /* MobileCoreServices.framework */,
@@ -177,6 +211,8 @@
 				5DC948211966790D009DF379 /* SDDDetailViewController.m */,
 				5DC948231966790D009DF379 /* Images.xcassets */,
 				5DC9480F1966790D009DF379 /* Supporting Files */,
+				5DBD2B27196E328200A99272 /* UIAlertView+SDD.h */,
+				5DBD2B28196E328300A99272 /* UIAlertView+SDD.m */,
 			);
 			path = SuperDD;
 			sourceTree = "<group>";
@@ -201,6 +237,8 @@
 			children = (
 				5DC948431966B6C3009DF379 /* SDDTask.h */,
 				5DC948441966B6C3009DF379 /* SDDTask.m */,
+				5D8404A0196E70AF00ABC26C /* SDDLocationReport.h */,
+				5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -262,6 +300,14 @@
 					};
 					5DC948041966790D009DF379 = {
 						DevelopmentTeam = 6634UJ78TD;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -387,10 +433,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DC948191966790D009DF379 /* SDDAppDelegate.m in Sources */,
+				5D8404A2196E70AF00ABC26C /* SDDLocationReport.m in Sources */,
 				5DC948221966790D009DF379 /* SDDDetailViewController.m in Sources */,
 				5DC948151966790D009DF379 /* main.m in Sources */,
 				5DC948451966B6C3009DF379 /* SDDTask.m in Sources */,
 				5DC9481F1966790D009DF379 /* SDDMasterViewController.m in Sources */,
+				5DBD2B29196E328300A99272 /* UIAlertView+SDD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,8 +538,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shiro Nohara (VB3B6UW79G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shiro Nohara (VB3B6UW79G)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -530,8 +578,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Georepublic Japan LLC (6634UJ78TD)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Georepublic Japan LLC (6634UJ78TD)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -554,12 +602,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shiro Nohara (VB3B6UW79G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shiro Nohara (WDY6P9F5A2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperDD/SuperDD-Prefix.pch";
 				INFOPLIST_FILE = "SuperDD/SuperDD-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3952CC16-E0C8-4655-88F2-0ED36CE0A48E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -570,11 +619,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Georepublic Japan LLC (6634UJ78TD)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SuperDD/SuperDD-Prefix.pch";
 				INFOPLIST_FILE = "SuperDD/SuperDD-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3952CC16-E0C8-4655-88F2-0ED36CE0A48E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

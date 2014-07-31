@@ -10,14 +10,17 @@
 
 #import "SDDDetailViewController.h"
 
+#import "UIAlertView+SDD.h"
 #import "SDDTask.h"
-
+#import "SDDLocationReport.h"
 
 @interface SDDMasterViewController () {
     NSMutableArray *_tasks;
 }
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) SDDTask *latestUnpublishedTask;
+@property (nonatomic, strong) CLCircularRegion *region;
 
 @end
 
@@ -40,12 +43,16 @@
     self.locationManager = [[CLLocationManager alloc] init];
     if ([CLLocationManager locationServicesEnabled]) {
         self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = 25;
+        [self.locationManager startUpdatingLocation];
     }
     
 //    _tasks = [[[[SDDTask tasksFromPropertyList:@"tasks"] reverseObjectEnumerator] allObjects] mutableCopy];
 //    
 //    SDDTask *task = _tasks[0];
 //    self.detailViewController.detailItem = task;
+    [self refresh];
+//    [self localNotification];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +71,91 @@
 //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //}
 
+- (void)localNotification
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.alertBody = @"LocalNotification after 10 sec";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
+- (void)refresh
+{
+    [SDDTask fetchPublishedAsync:^(NSArray *allRemote, NSError *error) {
+        if (error) {
+            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
+                [self refresh];
+            }];
+        }
+        else {
+            _tasks = [allRemote mutableCopy];
+            [self.tableView reloadData];
+            if (_tasks.count > 0) {
+                SDDTask *task = _tasks[0];
+                self.detailViewController.detailItem = task;
+            }
+            [self fetchLatestUnpublishedTask];
+        }
+    }];
+}
+
+- (void)fetchLatestUnpublishedTask
+{
+    [SDDTask fetchUnpublishedAsync:^(NSArray *allRemote, NSError *error) {
+        if (error) {
+            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
+                [self fetchLatestUnpublishedTask];
+            }];
+        }
+        else {
+            if (allRemote.count > 0) {
+                SDDTask *task = allRemote[0];
+                self.latestUnpublishedTask = task;
+                NSLog(@"set latestUnpublishedTask: %@", self.latestUnpublishedTask.identifier);
+                self.region = self.latestUnpublishedTask.region;
+                [self startMonitoringForRegion];
+            }
+            else {
+                NSLog(@"No more unpublished tasks");
+            }
+        }
+    }];
+}
+
+- (void)publishTask
+{
+    [self.latestUnpublishedTask publishAsync:^(NSError *error) {
+        if (error) {
+            NSLog(@"latestUnpublishedTask error: %@", error.localizedDescription);
+            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
+                [self publishTask];
+            }];
+        }
+        else {
+            NSLog(@"published");
+            [self refresh];
+        }
+    }];
+}
+
+- (void)stopMonitoringForRegion
+{
+    if (self.region) {
+        [self.locationManager stopMonitoringForRegion:self.region];
+    }
+}
+
+- (void)startMonitoringForRegion
+{
+    if (self.region) {
+        NSLog(@"startMonitoringForRegion");
+        [self.locationManager startMonitoringForRegion:self.region];
+    }
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -81,7 +173,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     SDDTask *task = _tasks[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", task.identifier, task.discussion];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", task.identifier, task.subject];
     return cell;
 }
 
@@ -125,9 +217,38 @@
 
 #pragma mark - CLLocation Manager delegate
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [SDDLocationReport reportLocation:locations[0]];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
+    NSLog(@"didEnterRegion");
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:-1];
+//    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.alertBody = [NSString stringWithFormat:@"%@ %@", self.latestUnpublishedTask.identifier, self.latestUnpublishedTask.subject];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didEnterRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
+    
+    [self.locationManager stopMonitoringForRegion:self.region];
+    [self publishTask];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"didEnterRegion");
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didExitRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alertView show];
+}
+
+- (IBAction)p:(id)sender {
+    [self publishTask];
 }
 
 @end

@@ -12,8 +12,11 @@
 
 #import <SRSimpleRemoteObject.h>
 
+typedef void (^SDDCompletionBlock)(NSError *error);
+
 @interface SDDTask : SRSimpleRemoteObject
 
+//@property (nonatomic, strong) NSNumber *id;
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *subject;
 @property (nonatomic, strong) NSString *discussion;
@@ -30,5 +33,7 @@
 //+ (NSArray *)disclosedTasks;
 //+ (SDDTask *)discloseNextTask;
 + (void)fetchPublishedAsync:(SRFetchCompletionBlock)completionBlock;
++ (void)fetchUnpublishedAsync:(SRFetchCompletionBlock)completionBlock;
+- (void)publishAsync:(SDDCompletionBlock)completionBlock;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "SDDTask.h"
 
+#import <AFNetworking/AFNetworking.h>
+
 static NSString *kSDDCFIdentifierOrder = @"cf_8";
 static NSString *kSDDCFIdentifierPublished = @"cf_11";
 
@@ -119,9 +121,23 @@ static NSMutableArray *tasks;
 + (void)fetchPublishedAsync:(SRFetchCompletionBlock)completionBlock
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"sort"] = @"cf_8:asc";
+    params[@"sort"] = @"cf_8:desc";
     params[@"assigned_to_id"] = @"me";
     params[kSDDCFIdentifierPublished] = @1;
+    NSString *apiKey = SHIRASETE_API_KEY;
+    if (apiKey) {
+        params[@"key"] = apiKey;
+    }
+    NSLog(@"params: %@", params);
+    [self fetchAsyncWithParams:params async:completionBlock];
+}
+
++ (void)fetchUnpublishedAsync:(SRFetchCompletionBlock)completionBlock
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"sort"] = @"cf_8:asc";
+    params[@"assigned_to_id"] = @"me";
+    params[kSDDCFIdentifierPublished] = @0;
     NSString *apiKey = SHIRASETE_API_KEY;
     if (apiKey) {
         params[@"key"] = apiKey;
@@ -147,9 +163,27 @@ static NSMutableArray *tasks;
     return r;
 }
 
-//+ (SDDTask *)discloseNextTask
-//{
-//    
-//}
+- (void)publishAsync:(SDDCompletionBlock)completionBlock
+{
+    NSDictionary *requestBody = @{@"issue": @{
+                                          @"custom_fields": @[
+                                                  @{@"value":@"1", @"id":@11}
+                                          ]
+                                  },
+                                  @"key": SHIRASETE_API_KEY};
+    
+    NSString *baseUrl = [SRRemoteConfig defaultConfig].baseurl;
+    NSNumber *remoteId = self.remoteId;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager PUT:[NSString stringWithFormat:@"%@/issues/%@.json", baseUrl, remoteId] parameters:requestBody success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"success");
+        completionBlock(nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", error);
+        completionBlock(error);
+    }];
+}
 
 @end

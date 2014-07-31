@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) SDDDetailViewController *detailViewController;
 
+- (IBAction)p:(id)sender;
+
 @end
