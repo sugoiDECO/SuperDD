@@ -12,7 +12,7 @@
 
 + (NSString *)representUrl
 {
-    return @"/users/current.json";
+    return [NSString stringWithFormat:@"/users/current.json?key=%@", SHIRASETE_API_KEY];
 }
 
 + (NSString *)resultKey

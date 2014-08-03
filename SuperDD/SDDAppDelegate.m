@@ -11,6 +11,9 @@
 #import <Parse/Parse.h>
 #import <SRRemoteConfig.h>
 
+#import "SDDUser.h"
+
+
 @implementation SDDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -31,6 +34,35 @@
     }
     
     [SRRemoteConfig defaultConfig].baseurl = @"http://beta.shirasete.jp";
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation.channels = @[];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [SDDUser fetchAsync:^(NSArray *allRemote, NSError *error) {
+                if (error) {
+                    NSLog(@"fetch user error: %@", error.localizedDescription);
+                }
+                else {
+                    SDDUser *currentUser = allRemote[0];
+                    NSString *channelName = [NSString stringWithFormat:@"channel_%@", currentUser.remoteId];
+                    NSLog(@"trying to set channel: %@", channelName);
+                    [PFPush subscribeToChannelInBackground:channelName block:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                            NSLog(@"subscribeToChannelInBackground succeeded");
+                        }
+                        else {
+                            NSLog(@"subscribeToChannelInBackground error: %@", error.localizedDescription);
+                        }
+                    }];
+                }
+            }];
+        }
+        else {
+            NSLog(@"saveInBackgroundWithBlock error: %@", error.localizedDescription);
+        }
+    }];
+    
     
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -83,7 +115,14 @@
 {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded) {
+            
+        }
+        else {
+            
+        }
+    }];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
