@@ -40,6 +40,9 @@
 
     self.detailViewController = (SDDDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(refresh) name:@"refreshTasks" object:nil];
+    
     self.locationManager = [[CLLocationManager alloc] init];
     if ([CLLocationManager locationServicesEnabled]) {
         self.locationManager.delegate = self;
@@ -71,19 +74,20 @@
 //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //}
 
-- (void)localNotification
-{
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.alertBody = @"LocalNotification after 10 sec";
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-}
+//- (void)localNotification
+//{
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];
+//    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    notification.alertBody = @"LocalNotification after 10 sec";
+//    notification.soundName = UILocalNotificationDefaultSoundName;
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+////    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//}
 
 - (void)refresh
 {
+    NSLog(@"refresh");
     [SDDTask fetchPublishedAsync:^(NSArray *allRemote, NSError *error) {
         if (error) {
             [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
@@ -97,64 +101,67 @@
                 SDDTask *task = _tasks[0];
                 self.detailViewController.detailItem = task;
             }
-            [self fetchLatestUnpublishedTask];
-        }
-    }];
-}
-
-- (void)fetchLatestUnpublishedTask
-{
-    [SDDTask fetchUnpublishedAsync:^(NSArray *allRemote, NSError *error) {
-        if (error) {
-            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
-                [self fetchLatestUnpublishedTask];
-            }];
-        }
-        else {
-            if (allRemote.count > 0) {
-                SDDTask *task = allRemote[0];
-                self.latestUnpublishedTask = task;
-                NSLog(@"set latestUnpublishedTask: %@", self.latestUnpublishedTask.identifier);
-                self.region = self.latestUnpublishedTask.region;
-                [self startMonitoringForRegion];
-            }
             else {
-                NSLog(@"No more unpublished tasks");
+                self.detailViewController.detailItem = nil;
             }
+//            [self fetchLatestUnpublishedTask];
         }
     }];
 }
 
-- (void)publishTask
-{
-    [self.latestUnpublishedTask publishAsync:^(NSError *error) {
-        if (error) {
-            NSLog(@"latestUnpublishedTask error: %@", error.localizedDescription);
-            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
-                [self publishTask];
-            }];
-        }
-        else {
-            NSLog(@"published");
-            [self refresh];
-        }
-    }];
-}
+//- (void)fetchLatestUnpublishedTask
+//{
+//    [SDDTask fetchUnpublishedAsync:^(NSArray *allRemote, NSError *error) {
+//        if (error) {
+//            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
+//                [self fetchLatestUnpublishedTask];
+//            }];
+//        }
+//        else {
+//            if (allRemote.count > 0) {
+//                SDDTask *task = allRemote[0];
+//                self.latestUnpublishedTask = task;
+//                NSLog(@"set latestUnpublishedTask: %@", self.latestUnpublishedTask.identifier);
+//                self.region = self.latestUnpublishedTask.region;
+//                [self startMonitoringForRegion];
+//            }
+//            else {
+//                NSLog(@"No more unpublished tasks");
+//            }
+//        }
+//    }];
+//}
 
-- (void)stopMonitoringForRegion
-{
-    if (self.region) {
-        [self.locationManager stopMonitoringForRegion:self.region];
-    }
-}
+//- (void)publishTask
+//{
+//    [self.latestUnpublishedTask publishAsync:^(NSError *error) {
+//        if (error) {
+//            NSLog(@"latestUnpublishedTask error: %@", error.localizedDescription);
+//            [UIAlertView showErrorAndRetryAlertViewWithError:error retryBlock:^{
+//                [self publishTask];
+//            }];
+//        }
+//        else {
+//            NSLog(@"published");
+//            [self refresh];
+//        }
+//    }];
+//}
 
-- (void)startMonitoringForRegion
-{
-    if (self.region) {
-        NSLog(@"startMonitoringForRegion");
-        [self.locationManager startMonitoringForRegion:self.region];
-    }
-}
+//- (void)stopMonitoringForRegion
+//{
+//    if (self.region) {
+//        [self.locationManager stopMonitoringForRegion:self.region];
+//    }
+//}
+
+//- (void)startMonitoringForRegion
+//{
+//    if (self.region) {
+//        NSLog(@"startMonitoringForRegion");
+//        [self.locationManager startMonitoringForRegion:self.region];
+//    }
+//}
 
 #pragma mark - Table View
 
@@ -222,33 +229,33 @@
     [SDDLocationReport reportLocation:locations[0]];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-    NSLog(@"didEnterRegion");
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-//    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:-1];
-//    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.alertBody = [NSString stringWithFormat:@"%@ %@", self.latestUnpublishedTask.identifier, self.latestUnpublishedTask.subject];
-    notification.soundName = UILocalNotificationDefaultSoundName;
-//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didEnterRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alertView show];
-    
-    [self.locationManager stopMonitoringForRegion:self.region];
-    [self publishTask];
-}
+//- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+//{
+//    NSLog(@"didEnterRegion");
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+////    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:-1];
+////    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    notification.alertBody = [NSString stringWithFormat:@"%@ %@", self.latestUnpublishedTask.identifier, self.latestUnpublishedTask.subject];
+//    notification.soundName = UILocalNotificationDefaultSoundName;
+////    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//    
+////    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didEnterRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+////    [alertView show];
+//    
+//    [self.locationManager stopMonitoringForRegion:self.region];
+//    [self publishTask];
+//}
 
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
-{
-    NSLog(@"didEnterRegion");
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didExitRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alertView show];
-}
+//- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+//{
+//    NSLog(@"didEnterRegion");
+////    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"didExitRegion" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+////    [alertView show];
+//}
 
 - (IBAction)p:(id)sender {
-    [self publishTask];
+//    [self publishTask];
 }
 
 @end

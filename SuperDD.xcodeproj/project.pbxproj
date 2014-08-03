@@ -16,6 +16,7 @@
 		5D473C101987AF1A0043680A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C0F1987AF1A0043680A /* QuartzCore.framework */; };
 		5D473C121987AF250043680A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D473C111987AF250043680A /* Security.framework */; };
 		5D473C151987AF3E0043680A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC6E088196D5AF100CDAF12 /* SystemConfiguration.framework */; };
+		5D473C18198B9E2B0043680A /* SDDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D473C17198B9E2B0043680A /* SDDUser.m */; };
 		5D8404A2196E70AF00ABC26C /* SDDLocationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */; };
 		5DBD2B12196DC5D600A99272 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC9482A1966790D009DF379 /* XCTest.framework */; };
 		5DBD2B13196DC5D600A99272 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC948081966790D009DF379 /* Foundation.framework */; };
@@ -60,6 +61,8 @@
 		5D473C0C1987AF000043680A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5D473C0F1987AF1A0043680A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5D473C111987AF250043680A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5D473C16198B9E2B0043680A /* SDDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDUser.h; sourceTree = "<group>"; };
+		5D473C17198B9E2B0043680A /* SDDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDUser.m; sourceTree = "<group>"; };
 		5D8404A0196E70AF00ABC26C /* SDDLocationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDLocationReport.h; sourceTree = "<group>"; };
 		5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDLocationReport.m; sourceTree = "<group>"; };
 		5DBD2B11196DC5D500A99272 /* SuperDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +242,8 @@
 				5DC948441966B6C3009DF379 /* SDDTask.m */,
 				5D8404A0196E70AF00ABC26C /* SDDLocationReport.h */,
 				5D8404A1196E70AF00ABC26C /* SDDLocationReport.m */,
+				5D473C16198B9E2B0043680A /* SDDUser.h */,
+				5D473C17198B9E2B0043680A /* SDDUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 				5DC948151966790D009DF379 /* main.m in Sources */,
 				5DC948451966B6C3009DF379 /* SDDTask.m in Sources */,
 				5DC9481F1966790D009DF379 /* SDDMasterViewController.m in Sources */,
+				5D473C18198B9E2B0043680A /* SDDUser.m in Sources */,
 				5DBD2B29196E328300A99272 /* UIAlertView+SDD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

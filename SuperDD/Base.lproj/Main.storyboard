@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -77,16 +77,43 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-BH-a0Q">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="まだタスクはありません" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67q-eZ-5bJ">
+                                        <rect key="frame" x="55" y="350" width="592" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="67q-eZ-5bJ" secondAttribute="centerX" id="Dxh-Sp-JcG"/>
+                                    <constraint firstAttribute="centerY" secondItem="67q-eZ-5bJ" secondAttribute="centerY" id="KKO-ls-n3K"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="rYB-BH-a0Q" secondAttribute="centerY" id="6Xe-sW-FH7"/>
+                            <constraint firstItem="rYB-BH-a0Q" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="HIs-XK-G07"/>
+                            <constraint firstItem="rYB-BH-a0Q" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="LnO-vB-CK5"/>
+                            <constraint firstAttribute="trailing" secondItem="rYB-BH-a0Q" secondAttribute="trailing" id="oRP-8d-UTn"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="rYB-BH-a0Q" secondAttribute="bottom" id="sYi-br-FIW"/>
+                            <constraint firstAttribute="centerX" secondItem="rYB-BH-a0Q" secondAttribute="centerX" id="wQb-7m-9JU"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="現在のタスク" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="actionTextView" destination="a5F-XO-5Aa" id="Edb-W5-9pf"/>
                         <outlet property="discussionTextView" destination="pGj-qO-I5H" id="Ss8-Z8-hXL"/>
                         <outlet property="identifierLabel" destination="F05-4a-euo" id="9Vj-ML-HyW"/>
+                        <outlet property="noTaskLabelView" destination="rYB-BH-a0Q" id="pQv-Ea-dEI"/>
                         <outlet property="subjectLabel" destination="ndc-cE-Kns" id="uiG-vu-8ET"/>
                         <outlet property="wayTextView" destination="gMc-fo-O5W" id="KZK-Uu-tzf"/>
                     </connections>
@@ -145,7 +172,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="タスク一覧" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

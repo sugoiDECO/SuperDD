@@ -39,6 +39,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
+        self.noTaskLabelView.hidden = YES;
         self.identifierLabel.text = self.detailItem.identifier;
         self.subjectLabel.text = self.detailItem.subject;
         self.discussionTextView.text = self.detailItem.discussion;
@@ -47,6 +48,9 @@
         self.actionTextView.font = [UIFont systemFontOfSize:24.0];
         self.wayTextView.text = self.detailItem.way;
         self.wayTextView.font = [UIFont systemFontOfSize:24.0];
+    }
+    else {
+        self.noTaskLabelView.hidden = NO;
     }
 }
 

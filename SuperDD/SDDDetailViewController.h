@@ -22,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *actionTextView;
 @property (weak, nonatomic) IBOutlet UITextView *wayTextView;
 
+@property (weak, nonatomic) IBOutlet UIView *noTaskLabelView;
+
 
 @end

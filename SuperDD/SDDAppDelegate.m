@@ -60,6 +60,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self refreshTasks];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -88,6 +89,15 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [PFPush handlePush:userInfo];
+//    NSNotification *notification = [NSNotification notificationWithName:@"refreshTasks" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    [self refreshTasks];
+}
+
+- (void)refreshTasks
+{
+    NSNotification *notification = [NSNotification notificationWithName:@"refreshTasks" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 @end
