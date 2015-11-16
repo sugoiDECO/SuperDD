@@ -99,6 +99,7 @@
             [self.tableView reloadData];
             if (_tasks.count > 0) {
                 SDDTask *task = _tasks[0];
+                self.detailViewController.title = @"現在のタスク";
                 self.detailViewController.detailItem = task;
             }
             else {
@@ -167,19 +168,51 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _tasks.count;
+    if (section == 0) {
+        if (_tasks.count > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    else {
+        if (_tasks.count > 0) {
+            return _tasks.count-1;
+        }
+        else {
+            return 0;
+        }
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"現在のタスク";
+    }
+    else {
+        return @"終了済みのタスク";
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    SDDTask *task = _tasks[indexPath.row];
+    SDDTask *task;
+    if (indexPath.section == 0) {
+        task = _tasks[0];
+    }
+    else {
+        task = _tasks[indexPath.row+1];
+    }
+
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", task.identifier, task.subject];
     return cell;
 }
@@ -218,7 +251,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SDDTask *task = _tasks[indexPath.row];
+    SDDTask *task;
+    if (indexPath.section == 0) {
+        task = _tasks[0];
+        self.detailViewController.title = @"現在のタスク";
+    }
+    else {
+        task = _tasks[indexPath.row+1];
+        self.detailViewController.title = @"終了済みのタスク";
+    }
     self.detailViewController.detailItem = task;
 }
 
